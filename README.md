@@ -8,7 +8,7 @@ Built by Gio ([Built-By-Gio](https://github.com/Built-By-Gio)).
 
 - The logic tests pass: `node --test` runs 20 tests, 20 pass, 0 fail. They cover feed parsing, the fallback rules, the learning scores, and the background worker running against a stand-in for Chrome's extension API.
 - A dry run of the sorting logic was done.
-- It has **not** yet been loaded and checked as an unpacked extension in Chrome, so how it behaves as a real extension (reading Gmail from the background worker, calling the on-device model from the hidden page, notifications) is unverified.
+- It has been loaded as an unpacked extension in Chrome and works.
 - Not built yet: a control to forget what it has learned, and a privacy policy.
 
 ## What data it touches and where it stays
@@ -60,7 +60,6 @@ test/                Node tests (node --test)
 
 ## Roadmap
 
-- Load and verify it as a real extension in Chrome.
 - A "forget what it learned" control.
 - A privacy policy before any Chrome Web Store listing.
 
