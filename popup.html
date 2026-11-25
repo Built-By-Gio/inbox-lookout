@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inbox Lookout</title>
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+<header class="label">
+  <div class="brand">
+    <span class="mark" id="mark" aria-hidden="true">
+      <svg class="bars" viewBox="0 0 128 128" fill="none" stroke="#1493A3" stroke-width="8">
+        <line x1="8" y1="120" x2="8" y2="74"/><line x1="20" y1="120" x2="20" y2="70"/>
+        <line x1="32" y1="120" x2="32" y2="76"/><line x1="44" y1="120" x2="44" y2="72"/>
+        <line x1="56" y1="120" x2="56" y2="70"/><line x1="68" y1="120" x2="68" y2="74"/>
+        <line x1="80" y1="120" x2="80" y2="76"/><line x1="92" y1="120" x2="92" y2="70"/>
+        <line x1="104" y1="120" x2="104" y2="74"/><line x1="116" y1="120" x2="116" y2="72"/>
+      </svg>
+      <svg class="slab" viewBox="0 0 128 128">
+        <rect x="26" y="10" width="56" height="80" rx="7" fill="#FBFAF5" stroke="#0F4A55" stroke-width="6"/>
+        <rect class="band" x="29" y="13" width="50" height="18" fill="#1493A3"/>
+        <rect x="37" y="40" width="34" height="42" rx="3" fill="none" stroke="#0F4A55" stroke-width="4"/>
+      </svg>
+    </span>
+    <h1>Inbox Lookout</h1>
+  </div>
+  <p class="grade" aria-hidden="true"><span class="cap" id="cap"></span><span class="num" id="num"></span></p>
+  <p class="tally" id="tally" aria-hidden="true"></p>
+  <p class="spoken" id="spoken" role="status"></p>
+</header>
+<main id="main"></main>
+<footer id="foot"></footer>
+<script src="vendor/anime.min.js"></script>
+<script src="popup.js"></script>
+</body>
+</html>

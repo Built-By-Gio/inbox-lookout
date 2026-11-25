@@ -1,0 +1,15 @@
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# tooling and build output
+node_modules/
+*.log
+dist/
+*.zip
+*.crx
+*.pem
+
+# working notes, kept out of the repo
+tasks/

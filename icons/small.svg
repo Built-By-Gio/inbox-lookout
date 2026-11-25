@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges">
+  <!-- Toolbar version of the mark, drawn on the pixel grid. Source for 16.png and 32.png.
+       Chrome's number badge covers the lower right, so the labelled card sits upper left. -->
+  <rect x="1.5" y="1.5" width="8" height="11" fill="#FBFAF5" stroke="#0F4A55"/>
+  <rect x="2" y="2" width="7" height="3" fill="#1493A3"/>
+  <g fill="#1493A3">
+    <rect x="1" y="14" width="2" height="2"/><rect x="4" y="14" width="2" height="2"/><rect x="7" y="14" width="2" height="2"/>
+    <rect x="11" y="8" width="2" height="8"/><rect x="14" y="9" width="2" height="7"/>
+  </g>
+</svg>

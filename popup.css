@@ -1,0 +1,145 @@
+/* Concept: a card grader. Mail that needs him gets a paper label; the rest stands on edge in the bulk box.
+   Flat colour only. Two voices: the tool speaks in Franklin Gothic, the mail speaks in Candara. */
+:root {
+  --plastic: #C9DDE0;       /* ground: a clear toploader */
+  --plastic-line: #9DBBC1;  /* rules between quiet rows */
+  --paper: #FBFAF5;         /* label and card stock */
+  --paper-cut: #E4E0D4;     /* cut edge of card stock */
+  --paper-hover: #EEF5F6;
+  --core: #10191C;          /* the black core layer of a card; main text */
+  --petrol: #0F4A55;        /* frame, the tool's words, buttons */
+  --muted: #3F5960;
+  --edge: #1493A3;          /* graphics only, never text */
+  --tool: "Franklin Gothic Medium", Bahnschrift, sans-serif;
+  --mail: Candara, Corbel, "Segoe UI Variable Text", sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { background: var(--plastic); }
+body {
+  margin: 0 auto; width: 400px; max-height: 600px;
+  display: flex; flex-direction: column;
+  background: var(--plastic); color: var(--core);
+  font: 400 13.5px/18px var(--mail); font-variant-numeric: lining-nums;
+}
+p, h1, h2, ul { margin: 0; padding: 0; }
+ul { list-style: none; }
+:focus-visible { outline: 2px solid var(--core); outline-offset: 2px; }
+
+/* The tool's voice */
+h1, h2, .cap, .num, .age, .why, .count, .show, .closing, .notice, button, footer {
+  font-family: var(--tool); font-weight: 400; font-synthesis: none; font-variant-numeric: tabular-nums;
+}
+.cap, h1, h2, .age i { text-transform: uppercase; }
+.cap { display: block; font-size: 10.5px; line-height: 12px; letter-spacing: .08em; color: var(--petrol); }
+
+/* A. The label: header and status in one */
+.label {
+  flex: none; margin: 8px 8px 0; padding: 8px 12px 10px;
+  background: var(--paper); border: 1.5px solid var(--petrol); border-top-width: 8px; border-radius: 3px;
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 12px; align-items: center;
+}
+.brand { display: flex; align-items: center; gap: 8px; }
+h1 { font-size: 13px; line-height: 1; letter-spacing: .08em; }
+.tally { grid-column: 1; margin-top: 6px; }
+.grade { grid-column: 2; grid-row: 1 / span 2; text-align: right; }
+.num { display: block; font-size: 46px; line-height: 46px; }
+.num.wide { font-size: 34px; }
+.num:empty { display: none; }
+.spoken { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* The mark: a labelled slab pulled up in front of a row of card edges */
+.mark { position: relative; flex: none; width: 32px; height: 32px; perspective: 140px; }
+.mark svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.mark .slab { transform: rotate(-7deg); transform-origin: 42.19% 39.06%; }
+.mark .band { transform-box: fill-box; transform-origin: left center; }
+.mark.big { width: 64px; height: 64px; perspective: 280px; }
+
+/* Lists */
+main { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding-bottom: 8px; scrollbar-width: thin; scrollbar-color: var(--petrol) transparent; }
+h2 {
+  height: 26px; margin: 0 10px; padding-bottom: 5px;
+  display: flex; align-items: flex-end; justify-content: space-between;
+  font-size: 11px; line-height: 1; letter-spacing: .1em; color: var(--petrol);
+}
+.rows { margin: 0 8px; perspective: 600px; }
+.row {
+  position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 56px; column-gap: 8px;
+  padding: 9px 10px 7px 12px; transform-origin: top center; overflow: hidden;
+}
+.row:hover { background: var(--paper-hover); }
+.row:hover .from { text-decoration: underline; }
+.open { grid-column: 1; grid-row: 1; min-width: 0; color: inherit; text-decoration: none; }
+.open::after { content: ''; position: absolute; inset: 0; } /* the whole row opens the email */
+.from, .subj, .why { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.from { font-weight: 700; font-size: 14px; }
+.age { grid-column: 2; grid-row: 1; text-align: right; }
+.age b { display: block; font-weight: 400; font-size: 22px; line-height: 22px; }
+.age b.now { font-size: 13px; text-transform: uppercase; }
+.age i { display: block; font-style: normal; font-size: 10.5px; line-height: 12px; letter-spacing: .08em; color: var(--muted); }
+.foot { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; min-height: 24px; margin-top: 2px; }
+.why { flex: 1; min-width: 0; font-size: 11.5px; line-height: 24px; color: var(--petrol); }
+.acts { position: relative; z-index: 1; flex: none; display: flex; align-items: center; gap: 12px; }
+
+button { margin: 0; padding: 0; border: 0; background: none; color: var(--petrol); font-size: 11.5px; line-height: 1; cursor: pointer; }
+.text { height: 24px; text-decoration: underline; text-underline-offset: 2px; }
+.box { height: 24px; padding: 0 9px; border: 1.5px solid var(--petrol); border-radius: 3px; }
+.box:hover { background: var(--petrol); color: var(--paper); }
+
+/* B. Needs you: paper rows, divided like card edges (cut, core, cut) */
+.needs { background: var(--paper); border-radius: 3px; overflow: hidden; }
+.needs .row + .row::before {
+  content: ''; position: absolute; inset: 0 0 auto; height: 3px;
+  background: var(--core); border-block: 1px solid var(--paper-cut);
+}
+.sleeve { margin: 0 8px; min-height: 56px; padding: 8px 12px; border: 1.5px solid var(--petrol); border-radius: 3px; }
+.sleeve b { display: block; font-weight: 400; font-size: 15px; line-height: 20px; }
+.sleeve span { color: var(--muted); }
+
+/* C. FYI: same row, quieter, straight on the plastic */
+.fyi .row, .trash .row { grid-template-columns: minmax(0, 1fr) auto; }
+.fyi .row { padding: 7px 10px 5px 12px; }
+.fyi .row + .row, .trash .row + .row, .trash .closing { border-top: 1px solid var(--plastic-line); }
+.fyi .from { font-size: 13px; line-height: 16px; }
+.fyi .subj { font-size: 13px; line-height: 16px; color: var(--muted); }
+.fyi .why, .trash .why { font-size: 11px; color: var(--muted); }
+.fyi .age b, .fyi .age i { display: inline; font-size: 15px; line-height: 16px; letter-spacing: 0; color: var(--muted); }
+.fyi .age i { margin-left: 3px; }
+
+/* D. Trash pile: card edges standing on a floor line; how thick it is comes from the real count */
+.pilebtn {
+  display: flex; align-items: flex-end; gap: 12px; width: calc(100% - 16px); height: 60px;
+  margin: 12px 8px 0; padding: 0 2px 6px; text-align: right;
+}
+.pilebtn:disabled { cursor: default; }
+.pile { flex: 1; min-width: 0; height: 30px; display: flex; align-items: flex-end; border-bottom: 1.5px solid var(--core); }
+.edge { flex: none; width: 3px; margin-right: 1px; background: var(--core); border-inline: 1px solid var(--paper); transform-origin: bottom; }
+.pile.lean .edge { transform: skewX(-10deg); }
+.pileinfo { flex: none; }
+.count { display: block; font-size: 30px; line-height: 30px; color: var(--core); }
+.pileinfo .cap { display: inline; }
+.show { margin-left: 8px; text-decoration: underline; text-underline-offset: 2px; }
+.trash { border: 1.5px solid var(--petrol); border-top: 0; } /* an open box */
+.trash .row { padding: 5px 8px 4px 10px; }
+.trash .open { display: flex; gap: 6px; }
+.trash .from { flex: none; max-width: 38%; font-size: 12.5px; line-height: 16px; }
+.trash .subj { flex: 1; min-width: 0; font-size: 12.5px; line-height: 16px; color: var(--muted); }
+.trash .age b, .trash .age i { display: inline; font-size: 11px; line-height: 16px; letter-spacing: .08em; color: var(--muted); text-transform: uppercase; }
+.trash .age i { margin-left: 2px; }
+.closing { padding: 6px 10px; font-size: 11px; color: var(--muted); }
+
+.notice { display: flex; align-items: center; gap: 8px; min-height: 28px; padding: 2px 12px; font-size: 11.5px; line-height: 14px; color: var(--petrol); }
+.notice span { flex: 1; min-width: 0; }
+
+/* States */
+.panel { margin: 10px 8px 0; padding: 12px; background: var(--paper); border-radius: 3px; font-size: 15px; line-height: 20px; }
+.panel small { display: block; margin-top: 6px; font-size: 13.5px; line-height: 18px; color: var(--muted); }
+.wide { display: block; width: calc(100% - 16px); height: 40px; margin: 10px 8px 4px; border-radius: 3px; background: var(--petrol); color: var(--paper); font-size: 14px; }
+.sorting { margin: 10px 8px 0; padding: 0 4px; font-size: 15px; line-height: 20px; }
+.sorting .top { display: flex; align-items: flex-end; gap: 12px; margin-bottom: 10px; }
+.sorting .pile { height: 48px; }
+
+/* E. Footer */
+footer { flex: none; min-height: 28px; padding: 6px 12px; border-top: 1px solid var(--plastic-line); font-size: 11px; line-height: 16px; color: var(--muted); }
+.ai::before { content: ''; display: inline-block; width: 8px; height: 8px; margin-right: 5px; border: 1.5px solid var(--petrol); }
+.ai.on::before { background: var(--petrol); }

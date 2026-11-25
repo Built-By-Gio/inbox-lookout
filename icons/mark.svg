@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- Inbox Lookout mark: one labelled slab pulled up in front of a row of card edges. Source for 48.png and 128.png. -->
+  <g fill="none" stroke="#1493A3" stroke-width="8">
+    <line x1="8" y1="120" x2="8" y2="74"/><line x1="20" y1="120" x2="20" y2="70"/>
+    <line x1="32" y1="120" x2="32" y2="76"/><line x1="44" y1="120" x2="44" y2="72"/>
+    <line x1="56" y1="120" x2="56" y2="70"/><line x1="68" y1="120" x2="68" y2="74"/>
+    <line x1="80" y1="120" x2="80" y2="76"/><line x1="92" y1="120" x2="92" y2="70"/>
+    <line x1="104" y1="120" x2="104" y2="74"/><line x1="116" y1="120" x2="116" y2="72"/>
+  </g>
+  <g transform="rotate(-7 54 50)">
+    <rect x="26" y="10" width="56" height="80" rx="7" fill="#FBFAF5" stroke="#0F4A55" stroke-width="6"/>
+    <rect x="29" y="13" width="50" height="18" fill="#1493A3"/>
+    <rect x="37" y="40" width="34" height="42" rx="3" fill="none" stroke="#0F4A55" stroke-width="4"/>
+  </g>
+</svg>
