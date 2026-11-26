@@ -13,7 +13,7 @@ Built by Gio ([Built-By-Gio](https://github.com/Built-By-Gio)).
 
 ## What data it touches and where it stays
 
-This is what the code does, read from the source:
+This is what the code does:
 
 - **Permissions** (`manifest.json`): `alarms` (the 5-minute check), `storage`, `notifications`, `offscreen` (a hidden page, because Chrome only offers its on-device model to pages, not to the background worker) and `background` (lets Chrome keep running in the background so checks continue). Host permission: `https://mail.google.com/*` only.
 - **What it reads:** Gmail's Atom feeds at `https://mail.google.com/mail/u/0/feed/atom` (the inbox plus the Primary, Important, Receipts, Social and Promotions views), using the Gmail sign-in already in your browser. Only the first signed-in account (`u/0`) is read. Each feed lists only the newest unread mail. The requests only read; nothing is marked, moved or deleted.
@@ -27,7 +27,7 @@ This is what the code does, read from the source:
 - To run the tests: Node.js with the built-in test runner (tested with Node 26). There are no dependencies and no build step.
 - The popup's fonts (Franklin Gothic Medium, Bahnschrift, Candara) ship with Windows; other systems fall back to a default font.
 
-Not documented yet: the minimum Chrome version that works.
+Still to add: the minimum Chrome version that works.
 
 ## How to load it
 
